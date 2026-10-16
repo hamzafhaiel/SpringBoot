@@ -32,7 +32,7 @@ The domain package contains entities for `Agence`, `Client`, `Contrat`, `Employe
 - `Vehicule` is mapped as a JPA entity.
 - `VehiculeRepository` extends `JpaRepository<Vehicule, Long>` and provides standard vehicle persistence operations.
 - `EmployeRepository` and the `IEmployeService` / `EmployeServiceImpl` pair provide employee creation, lookup, listing, update, and deletion through the service layer.
-- `EmployeController` exposes those employee operations through REST endpoints.
+- `EmployeController` exposes employee operations through REST endpoints. `GET /employes/test` is a simple route for checking the controller, and `GET /employes` lists employees.
 - At startup, a `CommandLineRunner` adds three sample vehicles if the vehicle table is empty.
 - No browser pages are implemented yet. The application currently focuses on the domain model, persistence, and employee REST operations.
 

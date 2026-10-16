@@ -23,6 +23,11 @@ public class EmployeController {
         this.employeService = employeService;
     }
 
+    @GetMapping("/test")
+    public String testerController() {
+        return "Le contrôleur Employe fonctionne.";
+    }
+
     @PostMapping
     public Employe creer(@RequestBody Employe employe) {
         return employeService.creer(employe);
