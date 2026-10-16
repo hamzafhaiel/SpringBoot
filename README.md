@@ -32,8 +32,9 @@ The domain package contains entities for `Agence`, `Client`, `Contrat`, `Employe
 - `Vehicule` is mapped as a JPA entity.
 - `VehiculeRepository` extends `JpaRepository<Vehicule, Long>` and provides standard vehicle persistence operations.
 - `EmployeRepository` and the `IEmployeService` / `EmployeServiceImpl` pair provide employee creation, lookup, listing, update, and deletion through the service layer.
+- `EmployeController` exposes those employee operations through REST endpoints.
 - At startup, a `CommandLineRunner` adds three sample vehicles if the vehicle table is empty.
-- REST controllers and web pages are not implemented yet. The application currently focuses on the domain model, persistence, and employee service logic.
+- No browser pages are implemented yet. The application currently focuses on the domain model, persistence, and employee REST operations.
 
 ## Requirements
 
@@ -72,7 +73,8 @@ src/main/java/tn/esprit/spring/
 ├── AutoLocationHamzaFhaielApplication.java  # Spring Boot entry point and sample-data setup
 ├── domain/                                  # JPA entities and enums
 ├── repository/                              # Spring Data repositories
-└── service/                                 # Employee service interface and implementation
+├── service/                                 # Employee service interface and implementation
+└── web/controller/                          # Employee REST controller
 src/main/resources/
 ├── application.properties                  # Application and database settings
 └── application-dev.properties               # Development profile settings
