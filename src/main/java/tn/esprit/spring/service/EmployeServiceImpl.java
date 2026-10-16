@@ -43,6 +43,6 @@ public class EmployeServiceImpl implements IEmployeService {
 
     @Override
     public void supprimer(long id) {
-        employeRepository.delete(obtenirParId(id));
+        employeRepository.deleteById(id);
     }
 }
