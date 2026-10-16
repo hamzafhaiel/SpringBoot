@@ -8,31 +8,27 @@ import tn.esprit.spring.repository.EmployeRepository;
 import java.util.List;
 
 @Service
-public class EmployeServiceImpl implements IEmployeService {
+public class EmployeService {
 
     private final EmployeRepository employeRepository;
 
-    public EmployeServiceImpl(EmployeRepository employeRepository) {
+    public EmployeService(EmployeRepository employeRepository) {
         this.employeRepository = employeRepository;
     }
 
-    @Override
     public Employe creer(Employe employe) {
         return employeRepository.save(employe);
     }
 
-    @Override
     public Employe obtenirParId(long id) {
         return employeRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Employé introuvable avec l'identifiant " + id));
     }
 
-    @Override
     public List<Employe> listerTous() {
         return employeRepository.findAll();
     }
 
-    @Override
     public Employe modifier(long id, Employe employe) {
         Employe employeExistant = obtenirParId(id);
         employeExistant.setNom(employe.getNom());
@@ -41,7 +37,6 @@ public class EmployeServiceImpl implements IEmployeService {
         return employeRepository.save(employeExistant);
     }
 
-    @Override
     public void supprimer(long id) {
         employeRepository.deleteById(id);
     }

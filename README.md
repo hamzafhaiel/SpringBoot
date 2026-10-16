@@ -31,9 +31,8 @@ The domain package contains entities for `Agence`, `Client`, `Contrat`, `Employe
 - `AutoLocationHamzaFhaielApplication` is the Spring Boot entry point.
 - `Vehicule` is mapped as a JPA entity.
 - `VehiculeRepository` extends `JpaRepository<Vehicule, Long>` and provides standard vehicle persistence operations.
-- `EmployeRepository` and the `IEmployeService` / `EmployeServiceImpl` pair provide employee creation, lookup, listing, update, and deletion through the service layer.
+- `EmployeService` and `EmployeRepository` provide employee creation, lookup, listing, update, and deletion through the service layer.
 - `EmployeController` exposes employee operations through REST endpoints. `GET /employes/test` is a simple route for checking the controller, and `GET /employes` lists employees.
-- At startup, a `CommandLineRunner` adds three sample vehicles if the vehicle table is empty.
 - No browser pages are implemented yet. The application currently focuses on the domain model, persistence, and employee REST operations.
 
 ## Requirements
@@ -70,10 +69,10 @@ On Windows PowerShell:
 
 ```text
 src/main/java/tn/esprit/spring/
-├── AutoLocationHamzaFhaielApplication.java  # Spring Boot entry point and sample-data setup
+├── AutoLocationHamzaFhaielApplication.java  # Spring Boot entry point
 ├── domain/                                  # JPA entities and enums
 ├── repository/                              # Spring Data repositories
-├── service/                                 # Employee service interface and implementation
+├── service/                                 # Employee service logic
 └── web/controller/                          # Employee REST controller
 src/main/resources/
 ├── application.properties                  # Application and database settings

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import tn.esprit.spring.domain.Employe;
-import tn.esprit.spring.service.IEmployeService;
+import tn.esprit.spring.service.EmployeService;
 
 import java.util.List;
 
@@ -17,9 +17,9 @@ import java.util.List;
 @RequestMapping("/employes")
 public class EmployeController {
 
-    private final IEmployeService employeService;
+    private final EmployeService employeService;
 
-    public EmployeController(IEmployeService employeService) {
+    public EmployeController(EmployeService employeService) {
         this.employeService = employeService;
     }
 
