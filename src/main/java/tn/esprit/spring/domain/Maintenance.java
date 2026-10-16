@@ -20,11 +20,11 @@ public class Maintenance {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long idMaintenance;
+    private Long idMaintenance;
 
-    LocalDate dateDebut;
+    private LocalDate dateDebut;
 
-    LocalDate dateFin;
+    private LocalDate dateFin;
 
-    String description;
+    private String description;
 }

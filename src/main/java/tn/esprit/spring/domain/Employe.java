@@ -20,12 +20,12 @@ public class Employe {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long idEmploye;
+    private Long idEmploye;
 
-    String nom;
+    private String nom;
 
-    String prenom;
+    private String prenom;
 
     @Enumerated(EnumType.STRING)
-    RoleEmploye role;
+    private RoleEmploye role;
 }

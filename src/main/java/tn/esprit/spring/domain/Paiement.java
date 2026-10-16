@@ -23,12 +23,12 @@ public class Paiement {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long idPaiement;
+    private Long idPaiement;
 
-    BigDecimal montant;
+    private BigDecimal montant;
 
-    LocalDate datePaiement;
+    private LocalDate datePaiement;
 
     @Enumerated(EnumType.STRING)
-    ModePaiement modePaiement;
+    private ModePaiement modePaiement;
 }

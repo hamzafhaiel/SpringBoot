@@ -20,17 +20,17 @@ public class Client {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long idClient;
+    private Long idClient;
 
-    String nom;
+    private String nom;
 
-    String prenom;
+    private String prenom;
 
-    String email;
+    private String email;
 
-    String telephone;
+    private String telephone;
 
-    String numPermis;
+    private String numPermis;
 
-    LocalDate dateInscription;
+    private LocalDate dateInscription;
 }

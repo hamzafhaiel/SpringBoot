@@ -22,12 +22,12 @@ public class Reservation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long idReservation;
+    private Long idReservation;
 
-    LocalDate dateDebut;
+    private LocalDate dateDebut;
 
-    LocalDate dateFin;
+    private LocalDate dateFin;
 
     @Enumerated(EnumType.STRING)
-    StatutReservation statut;
+    private StatutReservation statut;
 }

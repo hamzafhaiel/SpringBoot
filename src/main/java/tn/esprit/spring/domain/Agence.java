@@ -18,13 +18,13 @@ public class Agence {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long idAgence;
+    private Long idAgence;
 
-    String nom;
+    private String nom;
 
-    String ville;
+    private String ville;
 
-    String adresse;
+    private String adresse;
 
-    String telephone;
+    private String telephone;
 }

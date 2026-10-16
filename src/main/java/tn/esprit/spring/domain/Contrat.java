@@ -21,11 +21,11 @@ public class Contrat {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long idContrat;
+    private Long idContrat;
 
-    LocalDate dateSignature;
+    private LocalDate dateSignature;
 
-    BigDecimal montantTotal;
+    private BigDecimal montantTotal;
 
-    boolean valide;
+    private boolean valide;
 }
