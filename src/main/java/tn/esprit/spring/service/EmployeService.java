@@ -38,6 +38,7 @@ public class EmployeService {
     }
 
     public void supprimer(long id) {
+        obtenirParId(id);
         employeRepository.deleteById(id);
     }
 }

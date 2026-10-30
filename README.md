@@ -21,6 +21,7 @@ The domain package contains entities for `Agence`, `Client`, `Contrat`, `Employe
 - Maven and Maven Wrapper
 - Spring Web
 - Spring Data JPA and Hibernate
+- SpringDoc OpenAPI and Swagger UI
 - MySQL Connector/J
 - Lombok
 - Jakarta Bean Validation
@@ -29,11 +30,10 @@ The domain package contains entities for `Agence`, `Client`, `Contrat`, `Employe
 ## Current implementation
 
 - `AutoLocationHamzaFhaielApplication` is the Spring Boot entry point.
-- `Vehicule` is mapped as a JPA entity.
-- `VehiculeRepository` extends `JpaRepository<Vehicule, Long>` and provides standard vehicle persistence operations.
-- `EmployeService` and `EmployeRepository` provide employee creation, lookup, listing, update, and deletion through the service layer.
-- `EmployeController` exposes employee operations through REST endpoints. `GET /employes/test` is a simple route for checking the controller, and `GET /employes` lists employees.
-- No browser pages are implemented yet. The application currently focuses on the domain model, persistence, and employee REST operations.
+- Each domain entity has a Spring Data repository, a concrete service class, and a REST controller with CRUD operations.
+- Controllers follow the request flow: controller → service → repository → database.
+- SpringDoc generates the OpenAPI description and Swagger UI from the REST controllers. `@Tag` and `@Operation` annotations describe API groups and operations.
+- The project exposes REST APIs; it does not include browser pages.
 
 ## Requirements
 
@@ -65,6 +65,10 @@ On Windows PowerShell:
 .\mvnw.cmd spring-boot:run
 ```
 
+## API documentation
+
+After starting the application, open Swagger UI at `/swagger-ui/index.html` and the generated OpenAPI document at `/v3/api-docs`. If a servlet context path is configured, prepend it to either path. Swagger UI lists the CRUD operations for the project entities and lets you send requests to them.
+
 ## Project structure
 
 ```text
@@ -72,8 +76,8 @@ src/main/java/tn/esprit/spring/
 ├── AutoLocationHamzaFhaielApplication.java  # Spring Boot entry point
 ├── domain/                                  # JPA entities and enums
 ├── repository/                              # Spring Data repositories
-├── service/                                 # Employee service logic
-└── web/controller/                          # Employee REST controller
+├── service/                                 # Business and CRUD service methods
+└── web/controller/                          # REST controllers and API error handling
 src/main/resources/
 ├── application.properties                  # Application and database settings
 └── application-dev.properties               # Development profile settings
@@ -81,6 +85,6 @@ sql/
 └── autoloc_db.sql                           # Optional database creation script
 ```
 
-## Possible next steps
+## Current scope
 
-Future development stages can add entity relationships, repositories for the other entities, service-layer business rules, and REST controllers for vehicle, customer, reservation, contract, and payment operations.
+The REST endpoints manage the entities and their fields. Entity relationships and related cascade/fetch behavior can be added as the corresponding JPA associations are introduced in the course.
