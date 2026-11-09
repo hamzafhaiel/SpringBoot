@@ -20,19 +20,23 @@ public class MaintenanceService implements IMaintenanceService {
         this.vehiculeRepository = vehiculeRepository;
     }
 
+    @Override
     public Maintenance creer(Maintenance maintenance) {
         return maintenanceRepository.save(maintenance);
     }
 
+    @Override
     public Maintenance obtenirParId(long id) {
         return maintenanceRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Maintenance introuvable avec l'identifiant " + id));
     }
 
+    @Override
     public List<Maintenance> listerTous() {
         return maintenanceRepository.findAll();
     }
 
+    @Override
     public Maintenance modifier(long id, Maintenance maintenance) {
         Maintenance existante = obtenirParId(id);
         existante.setDateDebut(maintenance.getDateDebut());
@@ -41,6 +45,7 @@ public class MaintenanceService implements IMaintenanceService {
         return maintenanceRepository.save(existante);
     }
 
+    @Override
     public void supprimer(long id) {
         obtenirParId(id);
         maintenanceRepository.deleteById(id);

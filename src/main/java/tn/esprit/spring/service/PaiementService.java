@@ -16,19 +16,23 @@ public class PaiementService implements IPaiementService {
         this.paiementRepository = paiementRepository;
     }
 
+    @Override
     public Paiement creer(Paiement paiement) {
         return paiementRepository.save(paiement);
     }
 
+    @Override
     public Paiement obtenirParId(long id) {
         return paiementRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Paiement introuvable avec l'identifiant " + id));
     }
 
+    @Override
     public List<Paiement> listerTous() {
         return paiementRepository.findAll();
     }
 
+    @Override
     public Paiement modifier(long id, Paiement paiement) {
         Paiement existant = obtenirParId(id);
         existant.setMontant(paiement.getMontant());
@@ -37,6 +41,7 @@ public class PaiementService implements IPaiementService {
         return paiementRepository.save(existant);
     }
 
+    @Override
     public void supprimer(long id) {
         obtenirParId(id);
         paiementRepository.deleteById(id);

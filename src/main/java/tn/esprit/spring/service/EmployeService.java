@@ -20,19 +20,23 @@ public class EmployeService implements IEmployeService {
         this.agenceRepository = agenceRepository;
     }
 
+    @Override
     public Employe creer(Employe employe) {
         return employeRepository.save(employe);
     }
 
+    @Override
     public Employe obtenirParId(long id) {
         return employeRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Employé introuvable avec l'identifiant " + id));
     }
 
+    @Override
     public List<Employe> listerTous() {
         return employeRepository.findAll();
     }
 
+    @Override
     public Employe modifier(long id, Employe employe) {
         Employe employeExistant = obtenirParId(id);
         employeExistant.setNom(employe.getNom());
@@ -41,6 +45,7 @@ public class EmployeService implements IEmployeService {
         return employeRepository.save(employeExistant);
     }
 
+    @Override
     public void supprimer(long id) {
         obtenirParId(id);
         employeRepository.deleteById(id);

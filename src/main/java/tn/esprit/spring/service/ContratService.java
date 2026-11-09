@@ -16,19 +16,23 @@ public class ContratService implements IContratService {
         this.contratRepository = contratRepository;
     }
 
+    @Override
     public Contrat creer(Contrat contrat) {
         return contratRepository.save(contrat);
     }
 
+    @Override
     public Contrat obtenirParId(long id) {
         return contratRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Contrat introuvable avec l'identifiant " + id));
     }
 
+    @Override
     public List<Contrat> listerTous() {
         return contratRepository.findAll();
     }
 
+    @Override
     public Contrat modifier(long id, Contrat contrat) {
         Contrat existant = obtenirParId(id);
         existant.setDateSignature(contrat.getDateSignature());
@@ -37,6 +41,7 @@ public class ContratService implements IContratService {
         return contratRepository.save(existant);
     }
 
+    @Override
     public void supprimer(long id) {
         obtenirParId(id);
         contratRepository.deleteById(id);

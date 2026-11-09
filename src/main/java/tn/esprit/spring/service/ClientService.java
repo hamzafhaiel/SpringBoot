@@ -21,6 +21,7 @@ public class ClientService implements IClientService {
         this.reservationRepository = reservationRepository;
     }
 
+    @Override
     public Client creer(Client client) {
         return clientRepository.save(client);
     }
@@ -36,15 +37,18 @@ public class ClientService implements IClientService {
         return c;
     }
 
+    @Override
     public Client obtenirParId(long id) {
         return clientRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Client introuvable avec l'identifiant " + id));
     }
 
+    @Override
     public List<Client> listerTous() {
         return clientRepository.findAll();
     }
 
+    @Override
     public Client modifier(long id, Client client) {
         Client existant = obtenirParId(id);
         existant.setNom(client.getNom());
@@ -56,6 +60,7 @@ public class ClientService implements IClientService {
         return clientRepository.save(existant);
     }
 
+    @Override
     public void supprimer(long id) {
         obtenirParId(id);
         clientRepository.deleteById(id);

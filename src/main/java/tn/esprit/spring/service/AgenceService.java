@@ -16,19 +16,23 @@ public class AgenceService implements IAgenceService {
         this.agenceRepository = agenceRepository;
     }
 
+    @Override
     public Agence creer(Agence agence) {
         return agenceRepository.save(agence);
     }
 
+    @Override
     public Agence obtenirParId(long id) {
         return agenceRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Agence introuvable avec l'identifiant " + id));
     }
 
+    @Override
     public List<Agence> listerTous() {
         return agenceRepository.findAll();
     }
 
+    @Override
     public Agence modifier(long id, Agence agence) {
         Agence existante = obtenirParId(id);
         existante.setNom(agence.getNom());
@@ -38,6 +42,7 @@ public class AgenceService implements IAgenceService {
         return agenceRepository.save(existante);
     }
 
+    @Override
     public void supprimer(long id) {
         obtenirParId(id);
         agenceRepository.deleteById(id);

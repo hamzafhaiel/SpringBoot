@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import tn.esprit.spring.domain.Client;
 import tn.esprit.spring.service.IClientService;
 
@@ -40,10 +41,11 @@ public class ClientController {
         return clientService.obtenirParId(id);
     }
 
-    @PostMapping("/ajouterReservationClient")
+    @PostMapping({"/ajouterreservationclient", "/ajouterReservationClient"})
+    @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "Créer un client avec ses réservations")
-    public ResponseEntity<Client> ajouterReservationClient(@RequestBody Client c) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(clientService.ajouterReservationClient(c));
+    public Client ajouterReservationClient(@RequestBody Client c) {
+        return clientService.ajouterReservationClient(c);
     }
 
     @GetMapping("/listall")

@@ -16,6 +16,7 @@ public class ReservationService implements IReservationService {
         this.reservationRepository = reservationRepository;
     }
 
+    @Override
     public Reservation creer(Reservation reservation) {
         return reservationRepository.save(reservation);
     }
@@ -25,15 +26,18 @@ public class ReservationService implements IReservationService {
         return reservationRepository.save(r);
     }
 
+    @Override
     public Reservation obtenirParId(long id) {
         return reservationRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Reservation introuvable avec l'identifiant " + id));
     }
 
+    @Override
     public List<Reservation> listerTous() {
         return reservationRepository.findAll();
     }
 
+    @Override
     public Reservation modifier(long id, Reservation reservation) {
         Reservation existante = obtenirParId(id);
         existante.setDateDebut(reservation.getDateDebut());
@@ -42,6 +46,7 @@ public class ReservationService implements IReservationService {
         return reservationRepository.save(existante);
     }
 
+    @Override
     public void supprimer(long id) {
         obtenirParId(id);
         reservationRepository.deleteById(id);

@@ -20,19 +20,23 @@ public class VehiculeService implements IVehiculeService {
         this.equipementRepository = equipementRepository;
     }
 
+    @Override
     public Vehicule creer(Vehicule vehicule) {
         return vehiculeRepository.save(vehicule);
     }
 
+    @Override
     public Vehicule obtenirParId(long id) {
         return vehiculeRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Vehicule introuvable avec l'identifiant " + id));
     }
 
+    @Override
     public List<Vehicule> listerTous() {
         return vehiculeRepository.findAll();
     }
 
+    @Override
     public Vehicule modifier(long id, Vehicule vehicule) {
         Vehicule existant = obtenirParId(id);
         existant.setImmatriculation(vehicule.getImmatriculation());
@@ -44,6 +48,7 @@ public class VehiculeService implements IVehiculeService {
         return vehiculeRepository.save(existant);
     }
 
+    @Override
     public void supprimer(long id) {
         obtenirParId(id);
         vehiculeRepository.deleteById(id);

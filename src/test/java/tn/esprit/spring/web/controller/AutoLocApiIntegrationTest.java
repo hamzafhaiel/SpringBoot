@@ -50,7 +50,7 @@ class AutoLocApiIntegrationTest {
             assertThat(response.body()).as(path).isEqualTo("[]");
         }
 
-        HttpResponse<String> clientWithReservations = send("POST", "/clients/ajouterReservationClient", """
+        HttpResponse<String> clientWithReservations = send("POST", "/clients/ajouterreservationclient", """
                 {
                   "nom": "Client cascade", "prenom": "Test",
                   "reservations": [{
