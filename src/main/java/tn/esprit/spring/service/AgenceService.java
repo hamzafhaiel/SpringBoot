@@ -8,7 +8,7 @@ import tn.esprit.spring.repository.AgenceRepository;
 import java.util.List;
 
 @Service
-public class AgenceService {
+public class AgenceService implements IAgenceService {
 
     private final AgenceRepository agenceRepository;
 

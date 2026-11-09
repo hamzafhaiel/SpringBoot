@@ -8,7 +8,7 @@ import tn.esprit.spring.repository.PaiementRepository;
 import java.util.List;
 
 @Service
-public class PaiementService {
+public class PaiementService implements IPaiementService {
 
     private final PaiementRepository paiementRepository;
 

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import tn.esprit.spring.domain.Contrat;
-import tn.esprit.spring.service.ContratService;
+import tn.esprit.spring.service.IContratService;
 
 import java.util.List;
 
@@ -22,9 +22,9 @@ import java.util.List;
 @Tag(name = "Contrats", description = "Gestion des contrats de location")
 public class ContratController {
 
-    private final ContratService contratService;
+    private final IContratService contratService;
 
-    public ContratController(ContratService contratService) {
+    public ContratController(IContratService contratService) {
         this.contratService = contratService;
     }
 

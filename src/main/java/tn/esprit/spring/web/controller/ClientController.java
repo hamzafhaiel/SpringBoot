@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import tn.esprit.spring.domain.Client;
-import tn.esprit.spring.service.ClientService;
+import tn.esprit.spring.service.IClientService;
 
 import java.util.List;
 
@@ -22,9 +22,9 @@ import java.util.List;
 @Tag(name = "Clients", description = "Gestion des clients")
 public class ClientController {
 
-    private final ClientService clientService;
+    private final IClientService clientService;
 
-    public ClientController(ClientService clientService) {
+    public ClientController(IClientService clientService) {
         this.clientService = clientService;
     }
 
@@ -38,6 +38,12 @@ public class ClientController {
     @Operation(summary = "Chercher un client par identifiant")
     public Client obtenirParId(@PathVariable long id) {
         return clientService.obtenirParId(id);
+    }
+
+    @PostMapping("/ajouterReservationClient")
+    @Operation(summary = "Créer un client avec ses réservations")
+    public ResponseEntity<Client> ajouterReservationClient(@RequestBody Client c) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(clientService.ajouterReservationClient(c));
     }
 
     @GetMapping("/listall")

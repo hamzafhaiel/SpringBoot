@@ -2,22 +2,38 @@ package tn.esprit.spring.service;
 
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import tn.esprit.spring.domain.Client;
+import tn.esprit.spring.domain.Reservation;
 import tn.esprit.spring.repository.ClientRepository;
+import tn.esprit.spring.repository.ReservationRepository;
 
 import java.util.List;
 
 @Service
-public class ClientService {
+public class ClientService implements IClientService {
 
     private final ClientRepository clientRepository;
+    private final ReservationRepository reservationRepository;
 
-    public ClientService(ClientRepository clientRepository) {
+    public ClientService(ClientRepository clientRepository, ReservationRepository reservationRepository) {
         this.clientRepository = clientRepository;
+        this.reservationRepository = reservationRepository;
     }
 
     public Client creer(Client client) {
         return clientRepository.save(client);
+    }
+
+    @Override
+    @Transactional
+    public Client ajouterReservationClient(Client c) {
+        c = clientRepository.save(c);
+        for (Reservation r : c.getReservations()) {
+            r.setClient(c);
+            reservationRepository.save(r);
+        }
+        return c;
     }
 
     public Client obtenirParId(long id) {

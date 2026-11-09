@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import tn.esprit.spring.domain.Maintenance;
-import tn.esprit.spring.service.MaintenanceService;
+import tn.esprit.spring.service.IMaintenanceService;
 
 import java.util.List;
 
@@ -22,9 +22,9 @@ import java.util.List;
 @Tag(name = "Maintenances", description = "Gestion des opérations de maintenance")
 public class MaintenanceController {
 
-    private final MaintenanceService maintenanceService;
+    private final IMaintenanceService maintenanceService;
 
-    public MaintenanceController(MaintenanceService maintenanceService) {
+    public MaintenanceController(IMaintenanceService maintenanceService) {
         this.maintenanceService = maintenanceService;
     }
 
@@ -57,5 +57,11 @@ public class MaintenanceController {
     public ResponseEntity<Void> supprimer(@PathVariable long id) {
         maintenanceService.supprimer(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/affecterMaintenanceVehicule/{idm}/{idV}")
+    @Operation(summary = "Affecter une maintenance à un véhicule")
+    public Maintenance affecterMaintenanceVehicule(@PathVariable long idm, @PathVariable long idV) {
+        return maintenanceService.affecterMaintenanceVehicule(idm, idV);
     }
 }

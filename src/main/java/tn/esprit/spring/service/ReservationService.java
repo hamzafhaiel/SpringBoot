@@ -8,7 +8,7 @@ import tn.esprit.spring.repository.ReservationRepository;
 import java.util.List;
 
 @Service
-public class ReservationService {
+public class ReservationService implements IReservationService {
 
     private final ReservationRepository reservationRepository;
 
@@ -18,6 +18,11 @@ public class ReservationService {
 
     public Reservation creer(Reservation reservation) {
         return reservationRepository.save(reservation);
+    }
+
+    @Override
+    public Reservation ajouterReservationContrat(Reservation r) {
+        return reservationRepository.save(r);
     }
 
     public Reservation obtenirParId(long id) {

@@ -8,7 +8,7 @@ import tn.esprit.spring.repository.ContratRepository;
 import java.util.List;
 
 @Service
-public class ContratService {
+public class ContratService implements IContratService {
 
     private final ContratRepository contratRepository;
 

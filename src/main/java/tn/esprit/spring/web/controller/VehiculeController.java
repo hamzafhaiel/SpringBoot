@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import tn.esprit.spring.domain.Vehicule;
-import tn.esprit.spring.service.VehiculeService;
+import tn.esprit.spring.service.IVehiculeService;
 
 import java.util.List;
 
@@ -22,9 +22,9 @@ import java.util.List;
 @Tag(name = "Véhicules", description = "Gestion de la flotte de véhicules")
 public class VehiculeController {
 
-    private final VehiculeService vehiculeService;
+    private final IVehiculeService vehiculeService;
 
-    public VehiculeController(VehiculeService vehiculeService) {
+    public VehiculeController(IVehiculeService vehiculeService) {
         this.vehiculeService = vehiculeService;
     }
 
@@ -57,5 +57,11 @@ public class VehiculeController {
     public ResponseEntity<Void> supprimer(@PathVariable long id) {
         vehiculeService.supprimer(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/affecterEquipement/{idv}/{ideq}")
+    @Operation(summary = "Affecter un équipement à un véhicule")
+    public Vehicule affecterEquipementVehicule(@PathVariable long idv, @PathVariable long ideq) {
+        return vehiculeService.affecterEquipementVehicule(idv, ideq);
     }
 }

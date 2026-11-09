@@ -8,7 +8,7 @@ import tn.esprit.spring.repository.EquipementRepository;
 import java.util.List;
 
 @Service
-public class EquipementService {
+public class EquipementService implements IEquipementService {
 
     private final EquipementRepository equipementRepository;
 

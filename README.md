@@ -30,7 +30,11 @@ The domain package contains entities for `Agence`, `Client`, `Contrat`, `Employe
 ## Current implementation
 
 - `AutoLocationHamzaFhaielApplication` is the Spring Boot entry point.
-- Each domain entity has a Spring Data repository, a concrete service class, and a REST controller with CRUD operations.
+- Each domain entity has a Spring Data repository, a service interface, a concrete service implementation, and a REST controller with CRUD operations.
+- Controllers depend on service interfaces; implementations contain the business logic.
+- An employee can be assigned to an agency through a JPA many-to-one association.
+- Vehicles can be assigned equipment, and maintenance records can be assigned to vehicles through JPA associations.
+- Clients are saved first, then each reservation is linked to the client and saved in a loop. Reservations cascade all JPA operations to their contract, including deletion. Each contract can reference several existing payments.
 - Controllers follow the request flow: controller → service → repository → database.
 - SpringDoc generates the OpenAPI description and Swagger UI from the REST controllers. `@Tag` and `@Operation` annotations describe API groups and operations.
 - The project exposes REST APIs; it does not include browser pages.
@@ -87,4 +91,4 @@ sql/
 
 ## Current scope
 
-The REST endpoints manage the entities and their fields. Entity relationships and related cascade/fetch behavior can be added as the corresponding JPA associations are introduced in the course.
+The REST endpoints manage the entities and their fields. Employee-to-agency, vehicle-to-equipment, maintenance-to-vehicle, client-to-reservations, reservation-to-contract, and contract-to-payments associations are implemented. Other entity relationships can be added as they are introduced in the course.

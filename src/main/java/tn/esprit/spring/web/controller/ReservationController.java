@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import tn.esprit.spring.domain.Reservation;
-import tn.esprit.spring.service.ReservationService;
+import tn.esprit.spring.service.IReservationService;
 
 import java.util.List;
 
@@ -22,9 +22,9 @@ import java.util.List;
 @Tag(name = "Réservations", description = "Gestion des réservations de véhicules")
 public class ReservationController {
 
-    private final ReservationService reservationService;
+    private final IReservationService reservationService;
 
-    public ReservationController(ReservationService reservationService) {
+    public ReservationController(IReservationService reservationService) {
         this.reservationService = reservationService;
     }
 
@@ -38,6 +38,12 @@ public class ReservationController {
     @Operation(summary = "Chercher une réservation par identifiant")
     public Reservation obtenirParId(@PathVariable long id) {
         return reservationService.obtenirParId(id);
+    }
+
+    @PostMapping("/ajouterReservationContrat")
+    @Operation(summary = "Créer une réservation avec son contrat")
+    public ResponseEntity<Reservation> ajouterReservationContrat(@RequestBody Reservation r) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(reservationService.ajouterReservationContrat(r));
     }
 
     @GetMapping("/listall")
