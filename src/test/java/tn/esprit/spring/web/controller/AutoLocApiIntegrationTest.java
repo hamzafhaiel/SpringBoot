@@ -81,7 +81,7 @@ class AutoLocApiIntegrationTest {
         assertThat(paiementIdMatcher.find()).isTrue();
         String paiementId = paiementIdMatcher.group(1);
 
-        HttpResponse<String> reservationWithContrat = send("POST", "/reservations/ajouterReservationContrat", """
+        HttpResponse<String> reservationWithContrat = send("POST", "/reservations/ajouterreservationcontrat", """
                 {
                   "dateDebut": "2026-11-04", "dateFin": "2026-11-06", "statut": "CONFIRMEE",
                   "contrat": {

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import tn.esprit.spring.domain.Reservation;
 import tn.esprit.spring.service.IReservationService;
 
@@ -40,10 +41,11 @@ public class ReservationController {
         return reservationService.obtenirParId(id);
     }
 
-    @PostMapping("/ajouterReservationContrat")
+    @PostMapping({"/ajouterreservationcontrat", "/ajouterReservationContrat"})
+    @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "Créer une réservation avec son contrat")
-    public ResponseEntity<Reservation> ajouterReservationContrat(@RequestBody Reservation r) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(reservationService.ajouterReservationContrat(r));
+    public Reservation ajouterReservationContrat(@RequestBody Reservation r) {
+        return reservationService.ajouterReservationContrat(r);
     }
 
     @GetMapping("/listall")
